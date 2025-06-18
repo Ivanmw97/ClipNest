@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		2C49DBA92E037DFF00239CB9 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2C49DBA82E037DE400239CB9 /* README.md */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		2C49DB732E02FAC200239CB9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,6 +31,7 @@
 		2C49DB652E02FAC100239CB9 /* ClipNest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ClipNest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C49DB722E02FAC200239CB9 /* ClipNestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClipNestTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C49DB7C2E02FAC200239CB9 /* ClipNestUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ClipNestUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C49DBA82E037DE400239CB9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -75,6 +80,7 @@
 		2C49DB5C2E02FAC100239CB9 = {
 			isa = PBXGroup;
 			children = (
+				2C49DBA82E037DE400239CB9 /* README.md */,
 				2C49DB672E02FAC100239CB9 /* ClipNest */,
 				2C49DB752E02FAC200239CB9 /* ClipNestTests */,
 				2C49DB7F2E02FAC200239CB9 /* ClipNestUITests */,
@@ -212,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C49DBA92E037DFF00239CB9 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

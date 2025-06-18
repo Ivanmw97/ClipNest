@@ -11,7 +11,7 @@ import SwiftUI
 struct ClipNestApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            IdeasListView()
         }
     }
 }
