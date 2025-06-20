@@ -15,35 +15,84 @@ struct IdeasListView: View {
 
     var body: some View {
         NavigationView {
-            List {
-                ForEach(viewModel.ideas) { idea in
-                    NavigationLink(destination: IdeaDetailView(idea: idea)) {
-                        VStack(alignment: .leading) {
-                            Text(idea.title)
-                                .font(.headline)
-                            Text(idea.status.label)
-                                .font(.subheadline)
-                                .foregroundColor(.gray)
+            ZStack {
+                Group {
+                    if viewModel.ideas.isEmpty {
+                        emptyStateView
+                    } else {
+                        ScrollView {
+                            LazyVStack(spacing: 16) {
+                                ForEach(viewModel.ideas) { idea in
+                                    NavigationLink(
+                                        destination: IdeaDetailView(
+                                            idea: idea,
+                                            onSave: { updatedIdea in
+                                                viewModel.updateIdea(updatedIdea)
+                                            },
+                                            onDelete: { ideaToDelete in
+                                                viewModel.deleteIdea(ideaToDelete)
+                                            }
+                                        )
+                                    ) {
+                                        IdeaCardView(idea: idea)
+                                    }
+                                    .buttonStyle(.plain)
+                                }
+                            }
+                            .padding(.vertical)
+                            .padding(.horizontal, 8)
                         }
                     }
                 }
-                .onDelete(perform: viewModel.deleteIdea)
-            }
-            .navigationTitle("ClipNest")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        showingNewIdeaSheet = true
-                    }) {
-                        Image(systemName: "plus")
+
+                // Floating Action Button
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            showingNewIdeaSheet = true
+                        }) {
+                            Image(systemName: "plus")
+                                .font(.title2)
+                                .foregroundColor(.white)
+                                .padding()
+                                .background(Color.accentColor)
+                                .clipShape(Circle())
+                                .shadow(radius: 4)
+                        }
+                        .padding()
                     }
                 }
             }
+            .navigationTitle("ClipNest")
             .sheet(isPresented: $showingNewIdeaSheet) {
-                NewIdeaView { newIdea in
+                IdeaFormView { newIdea in
                     viewModel.addIdea(newIdea)
                 }
             }
         }
+    }
+
+    /// Displayed when the idea list is empty.
+    private var emptyStateView: some View {
+        VStack(spacing: 12) {
+            Image(systemName: "lightbulb.min")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 64, height: 64)
+                .foregroundColor(.accentColor.opacity(0.8))
+
+            Text("No ideas yet")
+                .font(.title2)
+                .bold()
+
+            Text("Tap the '+' button to create your first video idea.")
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal)
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
